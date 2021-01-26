@@ -119,7 +119,7 @@ prop_area* prop_area::map_fd_ro(const int fd) {
   pa_size_ = fd_stat.st_size;
   pa_data_size_ = pa_size_ - sizeof(prop_area);
 
-  void* const map_result = mmap(nullptr, pa_size_, PROT_READ, MAP_SHARED, fd, 0);
+  void* const map_result = mmap(nullptr, pa_size_, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
   if (map_result == MAP_FAILED) {
     return nullptr;
   }
@@ -134,7 +134,7 @@ prop_area* prop_area::map_fd_ro(const int fd) {
 }
 
 prop_area* prop_area::map_prop_area(const char* filename) {
-  int fd = open(filename, O_CLOEXEC | O_NOFOLLOW | O_RDONLY);
+  int fd = open(filename, O_CLOEXEC | O_NOFOLLOW | O_RDWR);
   if (fd == -1) return nullptr;
 
   prop_area* map_result = map_fd_ro(fd);
