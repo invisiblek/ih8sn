@@ -9,6 +9,7 @@ CXX=${CXX:-aarch64-linux-android29-clang++}
 ${CXX} \
     -Iaosp/bionic/libc \
     -Iaosp/bionic/libc/async_safe/include \
+    -Iaosp/bionic/libc/include/bits \
     -Iaosp/bionic/libc/system_properties/include \
     -Iaosp/system/core/base/include \
     -Iaosp/system/core/property_service/libpropertyinfoparser/include \
